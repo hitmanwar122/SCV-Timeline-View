@@ -1,0 +1,52 @@
+/* Keep SLDS timeline rails hidden */
+:host .slds-timeline::before,
+:host .slds-timeline__item::before,
+:host .slds-timeline__item_expandable::before { display: none; }
+
+/* Fixed icon column so we can place the rail exactly */
+:host .icon-wrap {
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.625rem;
+}
+
+/* Timeline items act as the positioning context */
+:host .timeline-item {
+  position: relative;
+  border-bottom: 1px solid var(--lwc-colorBorder, #e5e5e5);
+  padding: 0.5rem 0;
+}
+:host .timeline-item:last-child { border-bottom: 0; }
+
+/* THE CONNECTOR */
+:host .timeline-item::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: -8px;
+  width: 2px;
+  background: var(--lwc-colorBorder, #e5e5e5);
+  z-index: 0;
+}
+:host .timeline-item:last-child::after { display: none; }
+
+/* Badges stay above the line */
+:host .badge {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+:host .badge.inbound  { background: #2e844a; }
+:host .badge.outbound { background: #fe9339; }
+:host .badge lightning-icon { --sds-c-icon-color-foreground-default: #fff; }
+
+:host .cj-wrap { padding: 0.5rem 0.75rem 0.25rem 1rem; }
+:host .timeline-item .slds-media__figure { display: flex; align-items: center; }

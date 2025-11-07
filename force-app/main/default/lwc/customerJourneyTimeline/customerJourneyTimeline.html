@@ -1,0 +1,31 @@
+<template>
+  <lightning-card title="Customer Journey" icon-name="standard:call">
+    <div class="cj-wrap">
+      <template if:true={journeyData}>
+        <ul class="slds-timeline">
+          <template for:each={journeyData} for:item="item">
+            <li key={item.Id} class="slds-timeline__item timeline-item">
+              <div class="slds-media">
+                <div class="slds-media__figure icon-wrap">
+                  <span class={item.badgeClass}>
+                    <lightning-icon icon-name="utility:call" size="x-small"></lightning-icon>
+                  </span>
+                </div>
+                <div class="slds-media__body">
+                  <p class="slds-text-title_bold">{item.Type}</p>
+                  <p class="slds-text-body_small">
+                    {item.Timestamp} &bull; {item.Status}
+                  </p>
+                  <p class="slds-text-body_regular">{item.Notes}</p>
+                </div>
+              </div>
+            </li>
+          </template>
+        </ul>
+      </template>
+      <template if:false={journeyData}>
+        <p class="slds-text-body_small slds-text-color_weak">No recent interactions found.</p>
+      </template>
+    </div>
+  </lightning-card>
+</template>
